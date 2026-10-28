@@ -1,1 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>水哥趴趴走｜台灣慢旅行攻略</title>
+  <meta name="description" content="跟著水哥搭捷運、公車慢慢旅行，探索台北、新北、桃園與台灣各地的自然景點、健行步道與慢旅行。">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: #f7f5ed;
+      color: #26382f;
+      line-height: 1.7;
+    }
+
+    /* ===== 頂部主視覺 ===== */
+
+    .hero {
+      background: linear-gradient(135deg, #dff3df 0%, #fff5ce 100%);
+      padding: 70px 20px 60px;
+      text-align: center;
+    }
+
+    .brand {
+      display: inline-block;
+      background: #176c50;
+      color: white;
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 7vw, 62px);
+      color: #126548;
+      line-height: 1.2;
+    }
+
+    .hero .subtitle {
+      margin-top: 18px;
+      font-size: 20px;
+      color: #435a4c;
+    }
+
+    .hero .intro {
+      max-width: 650px;
+      margin: 22px auto 0;
+      color: #5a675f;
+    }
+
+    /* ===== 主內容 ===== */
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 38px 20px 70px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 15px 0 28px;
+    }
+
+    .section-title h2 {
+      color: #176c50;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #6c766f;
+    }
+
+    /* ===== 搜尋 ===== */
+
+    .search-box {
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 15px 18px;
+      border: 1px solid #d8ddd8;
+      border-radius: 14px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: #398568;
+      box-shadow: 0 0 0 3px rgba(57,133,104,.12);
+    }
+
+    /* ===== 分類按鈕 ===== */
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      border: none;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: white;
+      color: #32654f;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #176c50;
+      color: white;
+    }
+
+    /* ===== 旅遊卡片 ===== */
+
+    .travel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .travel-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,.07);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .travel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.11);
+    }
+
+    .card-cover {
+      height: 210px;
+      background: linear-gradient(135deg, #cce9c8, #f7e5a7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+    }
+
+    .cover-icon {
+      font-size: 72px;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .number {
+      color: #d47738;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .card-content h3 {
+      margin: 7px 0 8px;
+      font-size: 24px;
+      color: #164f3c;
+    }
+
+    .card-content p {
+      color: #68746d;
+      margin: 0 0 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: #eef6ef;
+      color: #347058;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+
+    .read-more {
+      display: inline-block;
+      text-decoration: none;
+      background: #176c50;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .read-more:hover {
+      background: #10553e;
+    }
+
+    /* ===== 即將推出 ===== */
+
+    .coming-soon {
+      margin-top: 50px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      border: 1px dashed #aebdaf;
+    }
+
+    .coming-soon h3 {
+      color: #176c50;
+      margin-top: 0;
+    }
+
+    /* ===== 水哥旅行理念 ===== */
+
+    .about {
+      margin-top: 45px;
+      background: #e7f2e5;
+      border-radius: 22px;
+      padding: 35px;
+      text-align: center;
+    }
+
+    .about h2 {
+      color: #176c50;
+    }
+
+    .about p {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    /* ===== Footer ===== */
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: #718077;
+      font-size: 14px;
+    }
+
+    /* ===== 手機版 ===== */
+
+    @media (max-width: 600px) {
+
+      .hero {
+        padding: 50px 18px 45px;
+      }
+
+      .hero .subtitle {
+        font-size: 17px;
+      }
+
+      .container {
+        padding: 28px 15px 55px;
+      }
+
+      .section-title h2 {
+        font-size: 25px;
+      }
+
+      .card-cover {
+        height: 180px;
+      }
+
+      .about {
+        padding: 26px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== 主視覺 ===== -->
+
+  <header class="hero">
+
+    <div class="brand">🌿 水哥趴趴走</div>
+
+    <h1>🚶 台灣慢旅行攻略</h1>
+
+    <div class="subtitle">
+      捷運 × 公車 × 健行 × 自然 × 在地生活
+    </div>
+
+    <p class="intro">
+      不一定要開車，也不一定要跑很遠。<br>
+      跟著水哥搭捷運、公車慢慢走，
+      找一條步道、一座小鎮、一片山海，
+      把旅行過成自己喜歡的樣子。
+    </p>
+
+  </header>
+
+
+  <main class="container">
+
+    <div class="section-title">
+      <h2>🗺️ 水哥的旅行地圖</h2>
+      <p>找一個喜歡的地方，下一站就出發。</p>
+    </div>
+
+
+    <!-- 搜尋 -->
+
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="🔍 搜尋景點，例如：坪林、北海岸、健行..."
+      >
+    </div>
+
+
+    <!-- 分類 -->
+
+    <div class="filters">
+
+      <button class="filter-btn active" data-filter="all">
+        全部
+      </button>
+
+      <button class="filter-btn" data-filter="新北">
+        新北
+      </button>
+
+      <button class="filter-btn" data-filter="台北">
+        台北
+      </button>
+
+      <button class="filter-btn" data-filter="桃園">
+        桃園
+      </button>
+
+      <button class="filter-btn" data-filter="健行">
+        健行
+      </button>
+
+    </div>
+
+
+    <!-- ===== 旅遊攻略卡片 ===== -->
+
+    <div class="travel-grid" id="travelGrid">
+
+
+      <!-- #001 坪林 -->
+
+      <article
+        class="travel-card"
+        data-category="新北 慢旅行"
+        data-keywords="坪林 茶 老街 茶業博物館 北勢溪 親水吊橋 公車"
+      >
+
+        <div class="card-cover">
+          <div class="cover-icon">🍵🌿</div>
+        </div>
+
+        <div class="card-content">
+
+          <div class="number">
+            TRIP #001
+          </div>
+
+          <h3>
+            新北坪林一日慢旅
+          </h3>
+
+          <p>
+            茶香、老街與北勢溪。
+            搭捷運＋公車就能出發，
+            給自己一天不趕時間的茶鄉旅行。
+          </p>
+
+          <div class="tags">
+            <span class="tag">📍 新北</span>
+            <span class="tag">🚌 大眾運輸</span>
+            <span class="tag">🍵 茶鄉</span>
+            <span class="tag">🌿 慢旅行</span>
+          </div>
+
+          <a
+            class="read-more"
+            href="pinglin-day-trip.html"
+          >
+            查看完整攻略 →
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <!-- ===== 即將推出 ===== -->
+
+    <section class="coming-soon">
+
+      <h3>🚶 下一站，去哪裡？</h3>
+
+      <p>
+        北海岸、九份、親山步道、捷運小旅行……
+        水哥會繼續把實用交通、散步路線與旅行心得
+        一篇一篇整理進來。
+      </p>
+
+      <p>
+        🌊 石門洞北海岸　
+        🏮 九份山城　
+        🌿 大溝溪　
+        🌾 草嶺古道
+      </p>
+
+    </section>
+
+
+    <!-- ===== 水哥旅行理念 ===== -->
+
+    <section class="about">
+
+      <h2>❤️ 水哥的旅行方式</h2>
+
+      <p>
+        我喜歡的旅行，不一定要走得很遠，
+        也不需要一天塞滿好多景點。
+        一區安排三、四個地方，
+        搭著捷運、公車慢慢走，
+        看看山、看看海、找點好吃的，
+        留一些時間給風景，也留一些時間給自己。
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    🌿 水哥趴趴走｜台灣慢旅行攻略<br>
+    Travel slowly, enjoy Taiwan deeply.<br><br>
+
+    © 水哥趴趴走
+
+  </footer>
+
+
+  <!-- ===== 搜尋＋分類功能 ===== -->
+
+  <script>
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const cards =
+      document.querySelectorAll(".travel-card");
+
+    const buttons =
+      document.querySelectorAll(".filter-btn");
+
+    let currentFilter = "all";
+
+
+    function updateCards() {
+
+      const keyword =
+        searchInput.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+
+        const text =
+          (
+            card.innerText +
+            " " +
+            card.dataset.keywords
+          ).toLowerCase();
+
+        const categories =
+          card.dataset.category || "";
+
+        const matchSearch =
+          text.includes(keyword);
+
+        const matchFilter =
+          currentFilter === "all" ||
+          categories.includes(currentFilter);
+
+        card.style.display =
+          matchSearch && matchFilter
+            ? ""
+            : "none";
+
+      });
+
+    }
+
+
+    searchInput.addEventListener(
+      "input",
+      updateCards
+    );
+
+
+    buttons.forEach(button => {
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          buttons.forEach(btn =>
+            btn.classList.remove("active")
+          );
+
+          this.classList.add("active");
+
+          currentFilter =
+            this.dataset.filter;
+
+          updateCards();
+
+        }
+      );
+
+    });
+
+  </script>
+
+</body>
+</html>
