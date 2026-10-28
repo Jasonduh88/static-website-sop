@@ -156,15 +156,18 @@
       box-shadow: 0 12px 30px rgba(0,0,0,.11);
     }
 
-    .card-cover {
-      height: 210px;
-      background: linear-gradient(135deg, #cce9c8, #f7e5a7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 25px;
-    }
+.card-cover {
+  height: 260px;
+  overflow: hidden;
+  background: #eef5e9;
+}
+
+.trip-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
     .cover-icon {
       font-size: 72px;
@@ -378,9 +381,13 @@
         data-keywords="坪林 茶 老街 茶業博物館 北勢溪 親水吊橋 公車"
       >
 
-        <div class="card-cover">
-          <div class="cover-icon">🍵🌿</div>
-        </div>
+<div class="card-cover">
+  <img
+    src="../images/travel/pinglin_day_trip_cover.png"
+    alt="水哥趴趴走｜新北坪林一日慢旅"
+    class="trip-cover-image"
+  >
+</div>
 
         <div class="card-content">
 
